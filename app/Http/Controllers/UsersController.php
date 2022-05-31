@@ -8,6 +8,12 @@ use App\Models\User;
 class UsersController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware(
+            'auth:api',
+        );
+    }
     //LISTAR USUARIOS
     public function index() {
         $users = User::all();
@@ -26,6 +32,7 @@ class UsersController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->password = bcrypt($request->password);
         $user->dni_type = $request->dni_type;
         $user->dni = $request->dni;
 

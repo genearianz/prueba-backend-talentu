@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class JobOfferController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(
+            'auth:api',
+        );
+    }
     //OBTIENE TODOS LOS REGISTRO DE TIPO DE OFERTA LABORAL
     public function index()
     {
